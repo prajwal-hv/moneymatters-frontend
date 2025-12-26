@@ -1,0 +1,50 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1 class="app-title">MoneyMatters</h1>
+    <p class="subtitle">Create your account</p>
+
+    <div *ngIf="error" class="error">
+      {{ error }}
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        placeholder="Username"
+        [(ngModel)]="userName"
+        autocomplete="username"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="email"
+        autocomplete="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        autocomplete="new-password"
+      />
+    </div>
+
+    <button
+      class="primary-btn"
+      (click)="register()"
+      [disabled]="loading"
+    >
+      {{ loading ? 'Creating account…' : 'Register' }}
+    </button>
+
+    <p class="footer-text">
+      Already have an account?
+      <a routerLink="/login">Sign in</a>
+    </p>
+  </div>
+</div>
