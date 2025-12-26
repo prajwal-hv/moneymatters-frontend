@@ -1,1 +1,48 @@
-<p>expense-form works!</p>
+<div class="page">
+  <div class="card">
+
+    <h2>Add Expense</h2>
+    <p class="subtitle">Log where your money goes</p>
+
+    <form [formGroup]="expenseForm" (ngSubmit)="submit()">
+
+      <div class="field">
+        <label>Title</label>
+        <input
+          type="text"
+          formControlName="title"
+          placeholder="Groceries / Rent / Netflix"
+        />
+      </div>
+
+      <div class="field">
+        <label>Amount</label>
+        <input
+          type="number"
+          formControlName="amount"
+          placeholder="₹"
+        />
+      </div>
+
+      <div class="field">
+        <label>Category</label>
+        <select formControlName="category">
+          <option value="" disabled>Select category</option>
+          <option *ngFor="let c of categories" [value]="c">
+            {{ formatCategory(c) }}
+          </option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Date</label>
+        <input type="date" formControlName="date" />
+      </div>
+
+      <button type="submit" [disabled]="expenseForm.invalid || loading">
+        {{ loading ? 'Saving…' : 'Add Expense' }}
+      </button>
+
+    </form>
+  </div>
+</div>
